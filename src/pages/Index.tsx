@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Scale, Users, FileText, MessageSquare } from "lucide-react";
@@ -82,3 +83,4 @@ const Index = () => {
 };
 
 export default Index;
+
