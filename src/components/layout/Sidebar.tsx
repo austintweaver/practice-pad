@@ -53,22 +53,20 @@ export function Sidebar({ className }: SidebarProps) {
   return (
     <div
       className={cn(
-        "flex flex-col bg-legal-navy text-white transition-all duration-300 ease-in-out h-screen",
+        "flex flex-col bg-sidebar text-sidebar-foreground transition-all duration-300 ease-in-out h-screen",
         isCollapsed ? "w-[70px]" : "w-[250px]",
         className
       )}
     >
       <div className="flex justify-between items-center p-4 border-b border-white/10">
         {!isCollapsed && (
-          <div className="font-semibold text-lg text-legal-gold">
-            ClientCounsel
-          </div>
+          <div className="font-semibold text-lg">ClientCounsel</div>
         )}
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="h-8 w-8 text-legal-gold hover:text-white hover:bg-legal-navy/50"
+          className="h-8 w-8 text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent"
         >
           {isCollapsed ? <ChevronRight /> : <X className="h-5 w-5" />}
         </Button>
@@ -83,8 +81,8 @@ export function Sidebar({ className }: SidebarProps) {
               className={cn(
                 "flex items-center px-3 py-2.5 text-sm font-medium rounded-md transition-colors",
                 location.pathname === item.path
-                  ? "bg-legal-gold text-legal-navy"
-                  : "text-white hover:bg-white/10"
+                  ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/20"
               )}
             >
               <div className="flex items-center">
@@ -99,12 +97,12 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="p-4 border-t border-white/10">
         {!isCollapsed && (
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-legal-gold flex items-center justify-center text-legal-navy font-medium">
+            <div className="w-8 h-8 rounded-full bg-sidebar-primary flex items-center justify-center text-sidebar-primary-foreground font-medium">
               AT
             </div>
             <div className="ml-3">
               <div className="text-sm font-medium">Attorney Name</div>
-              <div className="text-xs text-gray-300">attorney@example.com</div>
+              <div className="text-xs opacity-70">attorney@example.com</div>
             </div>
           </div>
         )}
