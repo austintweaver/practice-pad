@@ -19,6 +19,13 @@ export default {
 		},
 		extend: {
 			colors: {
+				legal: {
+					navy: '#1a365d',
+					gold: '#c9a227',
+					lightgold: '#e6d396',
+					gray: '#f7f7f7',
+					darkgray: '#4a5568'
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
