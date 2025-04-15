@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -6,11 +5,11 @@ import {
   MessageSquare,
   FileText,
   Users,
-  Menu as MenuIcon,
   Book,
   Home,
   X,
   ChevronRight,
+  ListTodo,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -19,6 +18,11 @@ const navItems = [
     name: "Dashboard",
     path: "/",
     icon: <Home className="h-5 w-5" />,
+  },
+  {
+    name: "Tasks",
+    path: "/tasks",
+    icon: <ListTodo className="h-5 w-5" />,
   },
   {
     name: "Messages",
