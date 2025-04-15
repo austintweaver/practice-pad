@@ -1,5 +1,5 @@
 
-import { Trash2 } from "lucide-react";
+import { Trash2, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
@@ -7,6 +7,7 @@ interface Task {
   id: string;
   title: string;
   completed: boolean;
+  clientName?: string;
 }
 
 interface TaskListProps {
@@ -37,14 +38,22 @@ const TaskList = ({ tasks, onToggle, onDelete }: TaskListProps) => {
               onCheckedChange={() => onToggle(task.id)}
               id={task.id}
             />
-            <label
-              htmlFor={task.id}
-              className={`text-sm ${
-                task.completed ? "line-through text-muted-foreground" : ""
-              }`}
-            >
-              {task.title}
-            </label>
+            <div>
+              <label
+                htmlFor={task.id}
+                className={`text-sm ${
+                  task.completed ? "line-through text-muted-foreground" : ""
+                }`}
+              >
+                {task.title}
+              </label>
+              {task.clientName && (
+                <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+                  <UserRound className="h-3 w-3" />
+                  {task.clientName}
+                </div>
+              )}
+            </div>
           </div>
           <Button
             variant="ghost"
