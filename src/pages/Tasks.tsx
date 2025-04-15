@@ -84,7 +84,7 @@ const Tasks = () => {
                   <SelectValue placeholder="Select client" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">No client</SelectItem>
+                  <SelectItem value="none">No client</SelectItem>
                   {clients.map((client) => (
                     <SelectItem key={client.id} value={client.name}>
                       {client.name}
