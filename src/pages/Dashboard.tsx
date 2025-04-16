@@ -1,44 +1,9 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, FileText, Users, Calendar, AlertCircle } from "lucide-react";
+import { MessageSquare, FileText, Calendar, AlertCircle } from "lucide-react";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
 
-// Sample data - would be fetched from backend in a real application
-const stats = [
-  {
-    title: "Active Clients",
-    value: "28",
-    icon: <Users className="h-5 w-5 text-legal-navy" />,
-    description: "4 new this month",
-    change: "+14%",
-    changeType: "positive",
-  },
-  {
-    title: "Documents",
-    value: "142",
-    icon: <FileText className="h-5 w-5 text-legal-navy" />,
-    description: "12 uploaded today",
-    change: "+8%",
-    changeType: "positive",
-  },
-  {
-    title: "Messages",
-    value: "87",
-    icon: <MessageSquare className="h-5 w-5 text-legal-navy" />,
-    description: "5 unread messages",
-    change: "-2%",
-    changeType: "negative",
-  },
-  {
-    title: "Appointments",
-    value: "15",
-    icon: <Calendar className="h-5 w-5 text-legal-navy" />,
-    description: "3 scheduled this week",
-    change: "0%",
-    changeType: "neutral",
-  },
-];
-
-// Sample recent client activity
+// Sample recent activity
 const recentActivity = [
   {
     client: "John Smith",
@@ -72,13 +37,12 @@ const recentActivity = [
   },
 ];
 
-// Sample recent clients
-const recentClients = [
-  { name: "John Smith", case: "Divorce Proceedings", status: "Active" },
-  { name: "Sarah Johnson", case: "Property Dispute", status: "Active" },
-  { name: "Michael Davis", case: "Personal Injury", status: "Pending" },
-  { name: "Emma Wilson", case: "Business Contract", status: "Active" },
-  { name: "Robert Brown", case: "Will Preparation", status: "Completed" },
+// Sample tasks data
+const tasksList = [
+  { title: "Review Contract for Johnson Case", status: "In Progress", dueDate: "Today" },
+  { title: "File Motion for Smith Case", status: "Pending", dueDate: "Tomorrow" },
+  { title: "Client Meeting - Davis Family", status: "Scheduled", dueDate: "Today" },
+  { title: "Document Review - Wilson Estate", status: "In Progress", dueDate: "Tomorrow" },
 ];
 
 export default function Dashboard() {
@@ -87,29 +51,8 @@ export default function Dashboard() {
       <div>
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
         <p className="text-muted-foreground">
-          Overview of your client activity and cases.
+          Overview of your activities and schedule.
         </p>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat, i) => (
-          <Card key={i}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-              <CardTitle className="text-sm font-medium">
-                {stat.title}
-              </CardTitle>
-              <div className="bg-legal-gray p-2 rounded-full">
-                {stat.icon}
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground">
-                {stat.description}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -160,36 +103,47 @@ export default function Dashboard() {
         
         <Card>
           <CardHeader>
-            <CardTitle>Recent Clients</CardTitle>
+            <CardTitle>Calendar</CardTitle>
             <CardDescription>
-              Latest client cases and status
+              Your schedule for today
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DayPicker
+              mode="single"
+              selected={new Date()}
+              showOutsideDays
+              className="border-none mx-auto pointer-events-auto"
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="md:col-span-2">
+          <CardHeader>
+            <CardTitle>Tasks Overview</CardTitle>
+            <CardDescription>
+              Your current tasks and their status
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentClients.map((client, i) => (
-                <div key={i} className="flex items-center justify-between">
+              {tasksList.map((task, i) => (
+                <div key={i} className="flex items-center justify-between p-4 rounded-lg border bg-card">
                   <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {client.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {client.case}
-                    </p>
+                    <p className="text-sm font-medium">{task.title}</p>
+                    <p className="text-xs text-muted-foreground">Due: {task.dueDate}</p>
                   </div>
-                  <div>
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                        client.status === "Active"
-                          ? "bg-green-100 text-green-800"
-                          : client.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-blue-100 text-blue-800"
-                      }`}
-                    >
-                      {client.status}
-                    </span>
-                  </div>
+                  <span
+                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      task.status === "In Progress"
+                        ? "bg-blue-100 text-blue-800"
+                        : task.status === "Pending"
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-green-100 text-green-800"
+                    }`}
+                  >
+                    {task.status}
+                  </span>
                 </div>
               ))}
             </div>
