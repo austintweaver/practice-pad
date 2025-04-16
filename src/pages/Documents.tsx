@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -54,6 +55,7 @@ import {
   FolderPlus,
 } from "lucide-react";
 import { Client, Document, Folder } from "@/types/documents";
+import { useToast } from "@/hooks/use-toast";
 
 const clientsData: Client[] = [
   {
@@ -113,6 +115,9 @@ export default function Documents() {
   const [isUploading, setIsUploading] = useState(false);
   const [expandedClients, setExpandedClients] = useState<number[]>([]);
   const [expandedFolders, setExpandedFolders] = useState<number[]>([]);
+  const [selectedClient, setSelectedClient] = useState<string>("");
+  const [selectedDocType, setSelectedDocType] = useState<string>("");
+  const { toast } = useToast();
 
   const toggleClient = (clientId: number) => {
     setExpandedClients(
@@ -128,6 +133,32 @@ export default function Documents() {
         ? expandedFolders.filter((id) => id !== folderId)
         : [...expandedFolders, folderId]
     );
+  };
+
+  const handleUpload = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!selectedClient || !selectedDocType) {
+      toast({
+        title: "Missing information",
+        description: "Please select a client and document type.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // This would be where you'd handle the actual file upload
+    // In a real application, you'd likely use an API call
+    toast({
+      title: "Document uploaded",
+      description: "Your document has been uploaded successfully.",
+    });
+    
+    // Reset form and close dialog
+    setSelectedClient("");
+    setSelectedDocType("");
+    setIsUploading(false);
   };
 
   const getFileIcon = (fileType: string) => {
@@ -177,7 +208,10 @@ export default function Documents() {
                 <div className="space-y-4 py-2">
                   <div className="space-y-2">
                     <Label htmlFor="client">Client</Label>
-                    <Select>
+                    <Select 
+                      value={selectedClient} 
+                      onValueChange={setSelectedClient}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select client" />
                       </SelectTrigger>
@@ -192,7 +226,10 @@ export default function Documents() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="type">Document Type</Label>
-                    <Select>
+                    <Select 
+                      value={selectedDocType} 
+                      onValueChange={setSelectedDocType}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Select document type" />
                       </SelectTrigger>
