@@ -26,7 +26,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  Tooltip as RechartsTooltip,
   Legend,
   ResponsiveContainer,
   Line,
@@ -173,37 +173,39 @@ export default function Reporting() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="month" />
                 <YAxis />
-                <ChartTooltipContent content={(props) => {
-                  if (!props.active || !props.payload || !props.payload.length) {
-                    return null;
-                  }
-                  return (
-                    <div className="rounded-lg border bg-background p-2 shadow-sm">
-                      <div className="grid gap-1">
-                        <p className="text-sm font-medium">{props.label}</p>
-                        {props.payload.map((item) => (
-                          <div
-                            key={item.name}
-                            className="flex items-center justify-between gap-2"
-                          >
-                            <div className="flex items-center gap-1">
-                              <div
-                                className="h-2 w-2 rounded-full"
-                                style={{ backgroundColor: item.color }}
-                              />
-                              <p className="text-xs text-muted-foreground">
-                                {item.name}
+                <RechartsTooltip 
+                  content={(props) => {
+                    if (!props.active || !props.payload || !props.payload.length) {
+                      return null;
+                    }
+                    return (
+                      <div className="rounded-lg border bg-background p-2 shadow-sm">
+                        <div className="grid gap-1">
+                          <p className="text-sm font-medium">{props.label}</p>
+                          {props.payload.map((item: any) => (
+                            <div
+                              key={item.name}
+                              className="flex items-center justify-between gap-2"
+                            >
+                              <div className="flex items-center gap-1">
+                                <div
+                                  className="h-2 w-2 rounded-full"
+                                  style={{ backgroundColor: item.color }}
+                                />
+                                <p className="text-xs text-muted-foreground">
+                                  {item.name}
+                                </p>
+                              </div>
+                              <p className="text-xs font-medium">
+                                ${Number(item.value).toLocaleString()}
                               </p>
                             </div>
-                            <p className="text-xs font-medium">
-                              ${Number(item.value).toLocaleString()}
-                            </p>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )
-                }} />
+                    )
+                  }}
+                />
                 <Legend />
                 <Bar dataKey="revenue" name="Revenue" fill="#0080ff" />
                 <Bar dataKey="expenses" name="Expenses" fill="#ff4040" />
@@ -233,7 +235,7 @@ export default function Reporting() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => `${value}%`} />
+                <RechartsTooltip formatter={(value) => `${value}%`} />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
