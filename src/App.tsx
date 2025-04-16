@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,6 +44,7 @@ const App = () => (
           
           {/* Client Routes */}
           <Route element={<ClientLayout />}>
+            <Route path="/client" element={<ClientDashboard />} />
             <Route path="/client/documents" element={<ClientDocuments />} />
             <Route path="/client/messages" element={<ClientMessages />} />
             <Route path="/client/services" element={<ClientServices />} />
