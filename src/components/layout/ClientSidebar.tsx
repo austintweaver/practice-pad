@@ -8,6 +8,7 @@ import {
   Book,
   X,
   ChevronRight,
+  Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -26,6 +27,11 @@ const navItems = [
     name: "Services",
     path: "/client/services",
     icon: <Book className="h-5 w-5" />,
+  },
+  {
+    name: "Calendar",
+    path: "/client/calendar",
+    icon: <Calendar className="h-5 w-5" />,
   },
 ];
 

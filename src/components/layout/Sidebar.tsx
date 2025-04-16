@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,8 @@ import {
   X,
   ChevronRight,
   ListTodo,
+  Calendar,
+  BarChart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -23,6 +26,11 @@ const navItems = [
     name: "Tasks",
     path: "/tasks",
     icon: <ListTodo className="h-5 w-5" />,
+  },
+  {
+    name: "Calendar",
+    path: "/calendar",
+    icon: <Calendar className="h-5 w-5" />,
   },
   {
     name: "Messages",
@@ -43,6 +51,11 @@ const navItems = [
     name: "Services",
     path: "/services",
     icon: <Book className="h-5 w-5" />,
+  },
+  {
+    name: "Reporting",
+    path: "/reporting",
+    icon: <BarChart className="h-5 w-5" />,
   },
 ];
 
