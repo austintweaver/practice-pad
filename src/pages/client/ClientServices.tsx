@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,11 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Calendar } from "lucide-react";
+import { Calendar, Check } from "lucide-react";
+import { ServiceData } from "@/types/services";
 
-// This would typically be fetched from an API
-// Using the same structure as the attorney page for now
-const services = {
+// Using the same initial services data structure as in the attorney Services page
+const initialServices: ServiceData = {
   litigation: [
     {
       id: 1,
@@ -28,21 +29,7 @@ const services = {
       ],
       price: "$250-500/hour",
       popular: true,
-    },
-    {
-      id: 2,
-      title: "Personal Injury",
-      description: "Legal representation for injury claims.",
-      details: [
-        "Case evaluation",
-        "Documentation of injuries",
-        "Negotiation with insurance companies",
-        "Litigation if necessary",
-        "Contingency fee basis available",
-      ],
-      price: "Contingency fee (30-40%)",
-      popular: false,
-    },
+    }
   ],
   family: [
     {
@@ -58,7 +45,7 @@ const services = {
       ],
       price: "$250-400/hour",
       popular: true,
-    },
+    }
   ],
   business: [
     {
@@ -74,7 +61,7 @@ const services = {
       ],
       price: "$1,500-3,000 (flat fee)",
       popular: true,
-    },
+    }
   ],
   estate: [
     {
@@ -90,11 +77,13 @@ const services = {
       ],
       price: "$800-1,500 (flat fee)",
       popular: true,
-    },
+    }
   ],
 };
 
 export default function ClientServices() {
+  const [selectedCategory, setSelectedCategory] = useState("litigation");
+
   return (
     <div className="space-y-6">
       <div>
@@ -104,7 +93,11 @@ export default function ClientServices() {
         </p>
       </div>
 
-      <Tabs defaultValue="litigation" className="space-y-6">
+      <Tabs 
+        value={selectedCategory} 
+        onValueChange={setSelectedCategory}
+        className="space-y-6"
+      >
         <TabsList className="bg-white border w-full justify-start h-12 overflow-x-auto px-1">
           <TabsTrigger value="litigation" className="flex-1 max-w-[200px]">
             Litigation
@@ -120,7 +113,7 @@ export default function ClientServices() {
           </TabsTrigger>
         </TabsList>
         
-        {Object.entries(services).map(([category, items]) => (
+        {Object.entries(initialServices).map(([category, items]) => (
           <TabsContent key={category} value={category} className="space-y-6">
             <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {items.map((service) => (
