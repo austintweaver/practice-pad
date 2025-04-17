@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,7 @@ import Reporting from "./pages/Reporting";
 import NotFound from "./pages/NotFound";
 
 // Client Pages
+import ClientDashboard from "./pages/client/ClientDashboard";
 import ClientDocuments from "./pages/client/ClientDocuments";
 import ClientMessages from "./pages/client/ClientMessages";
 import ClientServices from "./pages/client/ClientServices";
