@@ -10,8 +10,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Check } from "lucide-react";
+import { Calendar, Check, Send } from "lucide-react";
 import { ServiceData } from "@/types/services";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 // Using the same initial services data structure as in the attorney Services page
 const initialServices: ServiceData = {
@@ -83,6 +92,38 @@ const initialServices: ServiceData = {
 
 export default function ClientServices() {
   const [selectedCategory, setSelectedCategory] = useState("litigation");
+  const [isRequestDialogOpen, setIsRequestDialogOpen] = useState(false);
+  const [requestingService, setRequestingService] = useState<null | {
+    id: number;
+    title: string;
+  }>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleRequestService = (serviceId: number, serviceTitle: string) => {
+    setRequestingService({ id: serviceId, title: serviceTitle });
+    setIsRequestDialogOpen(true);
+  };
+
+  const submitServiceRequest = () => {
+    if (!requestingService) return;
+    
+    setIsSubmitting(true);
+    
+    // Simulate API call with timeout
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsRequestDialogOpen(false);
+      
+      toast({
+        title: "Service Requested",
+        description: `Your request for ${requestingService.title} has been sent to the attorney.`,
+      });
+      
+      // Reset state
+      setRequestingService(null);
+    }, 1000);
+  };
 
   return (
     <div className="space-y-6">
@@ -142,9 +183,12 @@ export default function ClientServices() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Schedule Consultation
+                    <Button 
+                      className="w-full"
+                      onClick={() => handleRequestService(service.id, service.title)}
+                    >
+                      <Send className="mr-2 h-4 w-4" />
+                      Request Service
                     </Button>
                   </CardFooter>
                 </Card>
@@ -158,6 +202,33 @@ export default function ClientServices() {
           </TabsContent>
         ))}
       </Tabs>
+
+      <Dialog open={isRequestDialogOpen} onOpenChange={setIsRequestDialogOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Request Service</DialogTitle>
+            <DialogDescription>
+              Submit your request for {requestingService?.title}. The attorney will review your request and either accept it or schedule a follow-up call.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <p className="text-sm font-medium">What will happen next:</p>
+              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-4">
+                <li>Your attorney will be notified of your service request</li>
+                <li>They will review the details and either accept the work or request a follow-up call</li>
+                <li>You will receive a notification when they respond</li>
+              </ul>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsRequestDialogOpen(false)}>Cancel</Button>
+            <Button onClick={submitServiceRequest} disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit Request"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
