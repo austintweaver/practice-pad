@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Check, Send } from "lucide-react";
+import { Calendar, Check, FileUp, Send, X } from "lucide-react";
 import { ServiceData } from "@/types/services";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -21,6 +21,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 // Using the same initial services data structure as in the attorney Services page
 const initialServices: ServiceData = {
@@ -98,11 +100,24 @@ export default function ClientServices() {
     title: string;
   }>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const { toast } = useToast();
 
   const handleRequestService = (serviceId: number, serviceTitle: string) => {
     setRequestingService({ id: serviceId, title: serviceTitle });
+    setSelectedFiles([]);
     setIsRequestDialogOpen(true);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setSelectedFiles((prev) => [...prev, ...newFiles]);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   const submitServiceRequest = () => {
@@ -115,13 +130,18 @@ export default function ClientServices() {
       setIsSubmitting(false);
       setIsRequestDialogOpen(false);
       
+      const fileDetails = selectedFiles.length > 0 
+        ? ` with ${selectedFiles.length} document${selectedFiles.length > 1 ? 's' : ''}`
+        : '';
+        
       toast({
         title: "Service Requested",
-        description: `Your request for ${requestingService.title} has been sent to the attorney.`,
+        description: `Your request for ${requestingService.title}${fileDetails} has been sent to the attorney.`,
       });
       
       // Reset state
       setRequestingService(null);
+      setSelectedFiles([]);
     }, 1000);
   };
 
@@ -219,6 +239,53 @@ export default function ClientServices() {
                 <li>They will review the details and either accept the work or request a follow-up call</li>
                 <li>You will receive a notification when they respond</li>
               </ul>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="document-upload" className="text-sm font-medium">Upload Relevant Documents</Label>
+              <div className="border-2 border-dashed border-gray-300 rounded-md p-4">
+                <div className="flex flex-col items-center justify-center space-y-2">
+                  <FileUp className="h-8 w-8 text-gray-400" />
+                  <p className="text-sm text-muted-foreground">Drag and drop or click to upload</p>
+                  <Input
+                    id="document-upload"
+                    type="file"
+                    className="hidden"
+                    multiple
+                    onChange={handleFileChange}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mt-2"
+                    onClick={() => document.getElementById('document-upload')?.click()}
+                  >
+                    Select Files
+                  </Button>
+                </div>
+              </div>
+
+              {selectedFiles.length > 0 && (
+                <div className="space-y-2 mt-3">
+                  <p className="text-sm font-medium">Selected Documents:</p>
+                  <ul className="space-y-2">
+                    {selectedFiles.map((file, index) => (
+                      <li key={index} className="flex items-center justify-between bg-gray-50 p-2 rounded-md">
+                        <span className="text-sm truncate max-w-[280px]">{file.name}</span>
+                        <Button
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => removeFile(index)}
+                          className="h-6 w-6 p-0"
+                        >
+                          <X className="h-4 w-4" />
+                          <span className="sr-only">Remove</span>
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
           <DialogFooter>
