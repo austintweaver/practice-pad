@@ -9,6 +9,7 @@ import {
   X,
   ChevronRight,
   Calendar,
+  DollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,6 +33,11 @@ const navItems = [
     name: "Calendar",
     path: "/client/calendar",
     icon: <Calendar className="h-5 w-5" />,
+  },
+  {
+    name: "Finances",
+    path: "/client/finances",
+    icon: <DollarSign className="h-5 w-5" />,
   },
 ];
 

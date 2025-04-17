@@ -22,6 +22,7 @@ import ClientDocuments from "./pages/client/ClientDocuments";
 import ClientMessages from "./pages/client/ClientMessages";
 import ClientServices from "./pages/client/ClientServices";
 import ClientCalendar from "./pages/client/ClientCalendar";
+import ClientFinances from "./pages/client/ClientFinances";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
             <Route path="/client/messages" element={<ClientMessages />} />
             <Route path="/client/services" element={<ClientServices />} />
             <Route path="/client/calendar" element={<ClientCalendar />} />
+            <Route path="/client/finances" element={<ClientFinances />} />
           </Route>
           
           <Route path="*" element={<NotFound />} />
