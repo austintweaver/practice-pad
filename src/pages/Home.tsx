@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
-
 const Home = () => {
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -62,7 +61,7 @@ const Home = () => {
       <section className="py-16 px-4 bg-primary text-primary-foreground">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Practice?</h2>
-          <p className="mb-8 max-w-2xl mx-auto">Join other professional firms who have streamlined their practice management.</p>
+          <p className="mb-8 max-w-2xl mx-auto">Join other professionals and firms who have streamlined their practice management.</p>
           <Button asChild size="lg" variant="secondary" className="min-w-[200px]">
             <Link to="/attorney/signup">Create Account</Link>
           </Button>
