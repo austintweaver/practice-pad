@@ -15,7 +15,7 @@ const Home = () => {
           <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="min-w-[160px]">
-              <Link to="/attorney/signup">Sign Up as Attorney</Link>
+              <Link to="/attorney/signup">Create Account</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="min-w-[160px]">
               <Link to="/login">Login</Link>
