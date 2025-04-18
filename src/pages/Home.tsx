@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight 
+  Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check 
 } from "lucide-react";
 
 const Home = () => {
