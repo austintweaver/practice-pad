@@ -1,15 +1,10 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check 
-} from "lucide-react";
-
+import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
 const Home = () => {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <header className="bg-gradient-to-b from-gray-50 to-white border-b">
         <div className="container mx-auto px-4 py-16 flex flex-col items-center text-center">
@@ -17,10 +12,7 @@ const Home = () => {
             Legal Practice Management
             <span className="block text-muted-foreground mt-2">Simplified</span>
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-            A secure platform for attorneys to manage clients, documents, and services
-            with dedicated client portals for seamless collaboration.
-          </p>
+          <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="min-w-[160px]">
               <Link to="/attorney/signup">Sign Up as Attorney</Link>
@@ -37,36 +29,12 @@ const Home = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Platform Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Shield className="h-10 w-10" />}
-              title="Secure Client Portal"
-              description="Provide clients with secure access to case information, documents, and communication."
-            />
-            <FeatureCard 
-              icon={<Users className="h-10 w-10" />}
-              title="Client Management"
-              description="Easily manage client relationships and create client accounts with appropriate access controls."
-            />
-            <FeatureCard 
-              icon={<FileText className="h-10 w-10" />}
-              title="Document Management"
-              description="Securely store, share, and collaborate on legal documents with clients."
-            />
-            <FeatureCard 
-              icon={<MessageSquare className="h-10 w-10" />}
-              title="Secure Messaging"
-              description="Communicate with clients in a secure environment, maintaining attorney-client privilege."
-            />
-            <FeatureCard 
-              icon={<Calendar className="h-10 w-10" />}
-              title="Calendar & Scheduling"
-              description="Manage appointments, deadlines, and important dates in one central location."
-            />
-            <FeatureCard 
-              icon={<BarChart3 className="h-10 w-10" />}
-              title="Reporting & Analytics"
-              description="Gain insights into your practice with comprehensive reporting tools."
-            />
+            <FeatureCard icon={<Shield className="h-10 w-10" />} title="Secure Client Portal" description="Provide clients with secure access to case information, documents, and communication." />
+            <FeatureCard icon={<Users className="h-10 w-10" />} title="Client Management" description="Easily manage client relationships and create client accounts with appropriate access controls." />
+            <FeatureCard icon={<FileText className="h-10 w-10" />} title="Document Management" description="Securely store, share, and collaborate on legal documents with clients." />
+            <FeatureCard icon={<MessageSquare className="h-10 w-10" />} title="Secure Messaging" description="Communicate with clients in a secure environment, maintaining attorney-client privilege." />
+            <FeatureCard icon={<Calendar className="h-10 w-10" />} title="Calendar & Scheduling" description="Manage appointments, deadlines, and important dates in one central location." />
+            <FeatureCard icon={<BarChart3 className="h-10 w-10" />} title="Reporting & Analytics" description="Gain insights into your practice with comprehensive reporting tools." />
           </div>
         </div>
       </section>
@@ -80,51 +48,11 @@ const Home = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <PricingCard
-              title="Basic"
-              price="$49"
-              description="Perfect for solo practitioners"
-              features={[
-                "Up to 25 client accounts",
-                "Document management",
-                "Secure messaging",
-                "Basic calendar",
-                "Email support"
-              ]}
-              buttonText="Get Started"
-              buttonLink="/attorney/signup?plan=basic"
-            />
+            <PricingCard title="Basic" price="$49" description="Perfect for solo practitioners" features={["Up to 25 client accounts", "Document management", "Secure messaging", "Basic calendar", "Email support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=basic" />
             
-            <PricingCard
-              title="Professional"
-              price="$99"
-              description="Ideal for small law firms"
-              features={[
-                "Up to 100 client accounts",
-                "All Basic features",
-                "Advanced reporting",
-                "Custom branding",
-                "Priority support"
-              ]}
-              buttonText="Get Started"
-              buttonLink="/attorney/signup?plan=professional"
-              highlighted={true}
-            />
+            <PricingCard title="Professional" price="$99" description="Ideal for small law firms" features={["Up to 100 client accounts", "All Basic features", "Advanced reporting", "Custom branding", "Priority support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=professional" highlighted={true} />
             
-            <PricingCard
-              title="Enterprise"
-              price="$199"
-              description="For established law practices"
-              features={[
-                "Unlimited client accounts",
-                "All Professional features",
-                "API access",
-                "Dedicated account manager",
-                "Phone support"
-              ]}
-              buttonText="Get Started"
-              buttonLink="/attorney/signup?plan=enterprise"
-            />
+            <PricingCard title="Enterprise" price="$199" description="For established law practices" features={["Unlimited client accounts", "All Professional features", "API access", "Dedicated account manager", "Phone support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=enterprise" />
           </div>
         </div>
       </section>
@@ -141,17 +69,19 @@ const Home = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
 
 // Feature Card Component
-const FeatureCard = ({ icon, title, description }: { 
-  icon: React.ReactNode; 
-  title: string; 
+const FeatureCard = ({
+  icon,
+  title,
+  description
+}: {
+  icon: React.ReactNode;
+  title: string;
   description: string;
-}) => (
-  <Card className="border">
+}) => <Card className="border">
     <CardHeader>
       <div className="text-primary mb-4">{icon}</div>
       <CardTitle>{title}</CardTitle>
@@ -159,33 +89,29 @@ const FeatureCard = ({ icon, title, description }: {
     <CardContent>
       <p className="text-muted-foreground">{description}</p>
     </CardContent>
-  </Card>
-);
+  </Card>;
 
 // Pricing Card Component
-const PricingCard = ({ 
-  title, 
-  price, 
-  description, 
-  features, 
-  buttonText, 
+const PricingCard = ({
+  title,
+  price,
+  description,
+  features,
+  buttonText,
   buttonLink,
-  highlighted = false 
-}: { 
-  title: string; 
-  price: string; 
+  highlighted = false
+}: {
+  title: string;
+  price: string;
   description: string;
   features: string[];
   buttonText: string;
   buttonLink: string;
   highlighted?: boolean;
-}) => (
-  <Card className={`border ${highlighted ? 'border-primary shadow-lg relative' : ''}`}>
-    {highlighted && (
-      <div className="absolute -top-3 left-0 right-0 mx-auto w-fit px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded">
+}) => <Card className={`border ${highlighted ? 'border-primary shadow-lg relative' : ''}`}>
+    {highlighted && <div className="absolute -top-3 left-0 right-0 mx-auto w-fit px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded">
         Most Popular
-      </div>
-    )}
+      </div>}
     <CardHeader>
       <CardTitle>{title}</CardTitle>
       <div className="text-4xl font-bold my-4">
@@ -195,12 +121,10 @@ const PricingCard = ({
     </CardHeader>
     <CardContent>
       <ul className="space-y-2">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-center">
+        {features.map((feature, index) => <li key={index} className="flex items-center">
             <Check className="h-4 w-4 text-primary mr-2" />
             <span className="text-sm">{feature}</span>
-          </li>
-        ))}
+          </li>)}
       </ul>
     </CardContent>
     <CardFooter>
@@ -211,7 +135,5 @@ const PricingCard = ({
         </Link>
       </Button>
     </CardFooter>
-  </Card>
-);
-
+  </Card>;
 export default Home;
