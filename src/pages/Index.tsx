@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Scale, Users, FileText, MessageSquare } from "lucide-react";
@@ -10,11 +9,11 @@ const Index = () => {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Legal Practice Management
+            Professional Services
             <span className="block text-muted-foreground mt-2">Simplified</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Streamline your legal practice with secure client communication, document management, and service delivery.
+            Streamline your professional services with secure client communication, document management, and service delivery.
           </p>
           <div className="flex gap-4 justify-center">
             <Button size="lg">Get Started</Button>
@@ -83,4 +82,3 @@ const Index = () => {
 };
 
 export default Index;
-

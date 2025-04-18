@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
+
 const Home = () => {
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <header className="bg-gradient-to-b from-gray-50 to-white border-b">
         <div className="container mx-auto px-4 py-16 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Legal Practice Management
+            Professional Services
             <span className="block text-muted-foreground mt-2">Simplified</span>
           </h1>
           <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
