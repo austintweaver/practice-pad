@@ -13,13 +13,14 @@ import {
   ListTodo,
   Calendar,
   BarChart,
+  DollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
   {
     name: "Dashboard",
-    path: "/",
+    path: "/dashboard",
     icon: <Home className="h-5 w-5" />,
   },
   {
@@ -53,6 +54,11 @@ const navItems = [
     icon: <Book className="h-5 w-5" />,
   },
   {
+    name: "Finances",
+    path: "/finances",
+    icon: <DollarSign className="h-5 w-5" />,
+  },
+  {
     name: "Reporting",
     path: "/reporting",
     icon: <BarChart className="h-5 w-5" />,
@@ -77,7 +83,7 @@ export function Sidebar({ className }: SidebarProps) {
     >
       <div className="flex justify-between items-center p-4 border-b border-white/10">
         {!isCollapsed && (
-          <div className="font-semibold text-lg">ClientCounsel</div>
+          <div className="font-semibold text-lg">PracticePad</div>
         )}
         <Button
           variant="ghost"
@@ -98,7 +104,7 @@ export function Sidebar({ className }: SidebarProps) {
               className={cn(
                 "flex items-center px-3 py-2.5 text-sm font-medium rounded-md transition-colors",
                 location.pathname === item.path
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                  ? "bg-red-600 text-white"
                   : "text-sidebar-foreground hover:bg-sidebar-accent/20"
               )}
             >
@@ -114,7 +120,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="p-4 border-t border-white/10">
         {!isCollapsed && (
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-sidebar-primary flex items-center justify-center text-sidebar-primary-foreground font-medium">
+            <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white font-medium">
               AT
             </div>
             <div className="ml-3">

@@ -28,6 +28,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          red: "#ea384c", // Our strong red color
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

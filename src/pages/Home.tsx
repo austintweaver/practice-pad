@@ -1,12 +1,14 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
+
 const Home = () => {
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <header className="bg-gradient-to-b from-gray-50 to-white border-b">
+      <header className="bg-gradient-to-b from-red-50 to-white border-b">
         <div className="container mx-auto px-4 py-16 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Professional Services
@@ -14,10 +16,10 @@ const Home = () => {
           </h1>
           <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" className="min-w-[160px]">
+            <Button asChild size="lg" className="min-w-[160px] bg-red-600 hover:bg-red-700">
               <Link to="/attorney/signup">Create Account</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="min-w-[160px]">
+            <Button asChild variant="outline" size="lg" className="min-w-[160px] border-red-600 text-red-600 hover:bg-red-50">
               <Link to="/login">Login</Link>
             </Button>
           </div>
@@ -29,12 +31,12 @@ const Home = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Platform Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <FeatureCard icon={<Shield className="h-10 w-10" />} title="Secure Client Portal" description="Provide clients with secure access to case information, documents, and communication." />
-            <FeatureCard icon={<Users className="h-10 w-10" />} title="Client Management" description="Easily manage client relationships and create client accounts with appropriate access controls." />
-            <FeatureCard icon={<FileText className="h-10 w-10" />} title="Document Management" description="Securely store, share, and collaborate on legal documents with clients." />
-            <FeatureCard icon={<MessageSquare className="h-10 w-10" />} title="Secure Messaging" description="Communicate with clients in a secure environment, maintaining attorney-client privilege." />
-            <FeatureCard icon={<Calendar className="h-10 w-10" />} title="Calendar & Scheduling" description="Manage appointments, deadlines, and important dates in one central location." />
-            <FeatureCard icon={<BarChart3 className="h-10 w-10" />} title="Reporting & Analytics" description="Gain insights into your practice with comprehensive reporting tools." />
+            <FeatureCard icon={<Shield className="h-10 w-10 text-red-600" />} title="Secure Client Portal" description="Provide clients with secure access to case information, documents, and communication." />
+            <FeatureCard icon={<Users className="h-10 w-10 text-red-600" />} title="Client Management" description="Easily manage client relationships and create client accounts with appropriate access controls." />
+            <FeatureCard icon={<FileText className="h-10 w-10 text-red-600" />} title="Document Management" description="Securely store, share, and collaborate on legal documents with clients." />
+            <FeatureCard icon={<MessageSquare className="h-10 w-10 text-red-600" />} title="Secure Messaging" description="Communicate with clients in a secure environment, maintaining attorney-client privilege." />
+            <FeatureCard icon={<Calendar className="h-10 w-10 text-red-600" />} title="Calendar & Scheduling" description="Manage appointments, deadlines, and important dates in one central location." />
+            <FeatureCard icon={<BarChart3 className="h-10 w-10 text-red-600" />} title="Reporting & Analytics" description="Gain insights into your practice with comprehensive reporting tools." />
           </div>
         </div>
       </section>
@@ -48,17 +50,59 @@ const Home = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <PricingCard title="Basic" price="$49" description="Perfect for solo practitioners" features={["Up to 25 client accounts", "Document management", "Secure messaging", "Basic calendar", "Email support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=basic" />
+            <PricingCard 
+              title="Basic" 
+              price="$25" 
+              description="Perfect for solo practitioners" 
+              features={[
+                "Up to 25 client accounts", 
+                "Document management", 
+                "Secure messaging", 
+                "Basic calendar", 
+                "Email support"
+              ]} 
+              buttonText="Get Started" 
+              buttonLink="/attorney/signup?plan=basic" 
+            />
             
-            <PricingCard title="Professional" price="$99" description="Ideal for small law firms" features={["Up to 100 client accounts", "All Basic features", "Advanced reporting", "Custom branding", "Priority support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=professional" highlighted={true} />
+            <PricingCard 
+              title="Professional" 
+              price="$50" 
+              description="Ideal for small firms" 
+              features={[
+                "Up to 100 client accounts", 
+                "All Basic features", 
+                "Advanced reporting", 
+                "Custom branding", 
+                "Custom URL (yourfirm.practicepad.com)", 
+                "Priority support"
+              ]} 
+              buttonText="Get Started" 
+              buttonLink="/attorney/signup?plan=professional" 
+              highlighted={true} 
+            />
             
-            <PricingCard title="Enterprise" price="$199" description="For established law practices" features={["Unlimited client accounts", "All Professional features", "API access", "Dedicated account manager", "Phone support"]} buttonText="Get Started" buttonLink="/attorney/signup?plan=enterprise" />
+            <PricingCard 
+              title="Enterprise" 
+              price="$150" 
+              description="For established practices" 
+              features={[
+                "Unlimited client accounts", 
+                "All Professional features", 
+                "Custom branding", 
+                "Custom URL (yourfirm.practicepad.com)", 
+                "Phone support", 
+                "Team management"
+              ]} 
+              buttonText="Get Started" 
+              buttonLink="/attorney/signup?plan=enterprise" 
+            />
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground">
+      <section className="py-16 px-4 bg-red-600 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Practice?</h2>
           <p className="mb-8 max-w-2xl mx-auto">Join other professionals and firms who have streamlined their practice management.</p>
@@ -106,8 +150,8 @@ const PricingCard = ({
   buttonText: string;
   buttonLink: string;
   highlighted?: boolean;
-}) => <Card className={`border ${highlighted ? 'border-primary shadow-lg relative' : ''}`}>
-    {highlighted && <div className="absolute -top-3 left-0 right-0 mx-auto w-fit px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded">
+}) => <Card className={`border ${highlighted ? 'border-red-600 shadow-lg relative' : ''}`}>
+    {highlighted && <div className="absolute -top-3 left-0 right-0 mx-auto w-fit px-3 py-1 bg-red-600 text-white text-xs font-bold rounded">
         Most Popular
       </div>}
     <CardHeader>
@@ -120,13 +164,14 @@ const PricingCard = ({
     <CardContent>
       <ul className="space-y-2">
         {features.map((feature, index) => <li key={index} className="flex items-center">
-            <Check className="h-4 w-4 text-primary mr-2" />
+            <Check className="h-4 w-4 text-red-600 mr-2" />
             <span className="text-sm">{feature}</span>
           </li>)}
       </ul>
     </CardContent>
     <CardFooter>
-      <Button asChild className="w-full" variant={highlighted ? "default" : "outline"}>
+      <Button asChild className="w-full" variant={highlighted ? "default" : "outline"} 
+        style={highlighted ? {backgroundColor: "#ea384c", borderColor: "#ea384c"} : {borderColor: "#ea384c", color: "#ea384c"}}>
         <Link to={buttonLink} className="flex items-center justify-center">
           {buttonText}
           <ArrowRight className="ml-2 h-4 w-4" />
@@ -134,4 +179,5 @@ const PricingCard = ({
       </Button>
     </CardFooter>
   </Card>;
+
 export default Home;

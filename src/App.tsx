@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,8 +20,10 @@ import Services from "./pages/Services";
 import Tasks from "./pages/Tasks";
 import Calendar from "./pages/Calendar";
 import Reporting from "./pages/Reporting";
+import Finances from "./pages/Finances";
 import AttorneySignup from "./pages/attorney/AttorneySignup";
 import CreateClientAccount from "./pages/attorney/CreateClientAccount";
+import CreateTeamMember from "./pages/attorney/CreateTeamMember";
 
 // Client Pages
 import ClientDashboard from "./pages/client/ClientDashboard";
@@ -53,11 +56,13 @@ const App = () => (
             <Route path="/tasks" element={<Tasks />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/clients/new" element={<CreateClientAccount />} />
+            <Route path="/team/new" element={<CreateTeamMember />} />
             <Route path="/documents" element={<Documents />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/services" element={<Services />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/reporting" element={<Reporting />} />
+            <Route path="/finances" element={<Finances />} />
           </Route>
           
           {/* Client Routes - Protected (would need auth in real app) */}
