@@ -4,25 +4,88 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Home = () => {
   return <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <header className="bg-gradient-to-b from-red-50 to-white border-b">
-        <div className="container mx-auto px-4 py-16 flex flex-col items-center text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Client Clubhouse
-            <span className="block text-muted-foreground mt-2">Professional Services Simplified</span>
-          </h1>
-          <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button asChild size="lg" className="min-w-[160px] bg-red-600 hover:bg-red-700">
-              <Link to="/professional/signup">Create Account</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="min-w-[160px] border-red-600 text-red-600 hover:bg-red-50">
-              <Link to="/login">Login</Link>
-            </Button>
+      {/* Enhanced Hero Section */}
+      <header className="relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-50/70 to-white z-0"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-red-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute top-40 left-40 w-72 h-72 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-56 h-56 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        
+        {/* Content */}
+        <div className="container relative mx-auto px-4 pt-20 pb-24 flex flex-col md:flex-row items-center z-10">
+          <div className="md:w-1/2 md:pr-12 mb-10 md:mb-0">
+            <div className="text-sm font-medium text-red-600 mb-2 tracking-wider">CLIENT MANAGEMENT SIMPLIFIED</div>
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-gray-900">
+              Client Clubhouse
+              <span className="block text-2xl md:text-3xl font-bold mt-2 text-gray-700">For Modern Professionals</span>
+            </h1>
+            <p className="text-lg mb-8 text-gray-700 max-w-lg">
+              A secure, elegant platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild size="lg" className="min-w-[160px] bg-red-600 hover:bg-red-700">
+                <Link to="/professional/signup">Create Account</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="min-w-[160px] border-red-600 text-red-600 hover:bg-red-50">
+                <Link to="/login">Login</Link>
+              </Button>
+            </div>
           </div>
+          
+          {/* Testimonials Carousel */}
+          <div className="md:w-1/2 w-full max-w-md mx-auto md:mr-0">
+            <Carousel className="bg-white/70 backdrop-blur-sm rounded-xl shadow-xl p-6">
+              <CarouselContent>
+                <CarouselItem>
+                  <TestimonialCard 
+                    quote="Client Clubhouse transformed how we manage clients. Our team is more organized and clients are happier than ever."
+                    author="Sarah J."
+                    role="Financial Advisor"
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <TestimonialCard 
+                    quote="The secure document sharing and client communication tools are game-changers for our practice."
+                    author="Michael T."
+                    role="Legal Professional"
+                  />
+                </CarouselItem>
+                <CarouselItem>
+                  <TestimonialCard 
+                    quote="Our clients love having one central place to view all their information and communicate with us."
+                    author="Elena R."
+                    role="Accounting Professional"
+                  />
+                </CarouselItem>
+              </CarouselContent>
+              <div className="flex justify-center mt-4 gap-2">
+                <CarouselPrevious className="relative inset-auto left-auto transform-none h-8 w-8 rounded-full" />
+                <CarouselNext className="relative inset-auto right-auto transform-none h-8 w-8 rounded-full" />
+              </div>
+            </Carousel>
+          </div>
+        </div>
+        
+        {/* Curved Divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-[60px]">
+            <path 
+              fill="#FFFFFF" 
+              fillOpacity="1" 
+              d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,48C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+            </path>
+          </svg>
         </div>
       </header>
 
@@ -125,7 +188,7 @@ const FeatureCard = ({
   icon: React.ReactNode;
   title: string;
   description: string;
-}) => <Card className="border">
+}) => <Card className="border hover:shadow-md transition-shadow duration-300">
     <CardHeader>
       <div className="text-primary mb-4">{icon}</div>
       <CardTitle>{title}</CardTitle>
@@ -134,6 +197,26 @@ const FeatureCard = ({
       <p className="text-muted-foreground">{description}</p>
     </CardContent>
   </Card>;
+
+// Testimonial Card Component
+const TestimonialCard = ({
+  quote,
+  author,
+  role
+}: {
+  quote: string;
+  author: string;
+  role: string;
+}) => (
+  <div className="flex flex-col items-center text-center p-2">
+    <svg className="h-8 w-8 text-red-300 mb-2" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+    </svg>
+    <p className="text-lg italic mb-4 text-gray-700">{quote}</p>
+    <div className="font-semibold text-gray-900">{author}</div>
+    <div className="text-sm text-gray-600">{role}</div>
+  </div>
+);
 
 // Pricing Card Component
 const PricingCard = ({
