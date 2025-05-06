@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,7 +77,7 @@ export function TimeTracker() {
   const { toast } = useToast();
 
   useEffect(() => {
-    let interval: number | undefined;
+    let interval: NodeJS.Timeout | undefined;
     
     if (isTracking) {
       interval = setInterval(() => {
