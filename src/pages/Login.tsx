@@ -21,7 +21,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [userType, setUserType] = useState("attorney");
+  const [userType, setUserType] = useState("professional");
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -36,12 +36,12 @@ const Login = () => {
       // For demo purposes, always succeed login and redirect
       toast({
         title: "Logged in successfully",
-        description: `Welcome back to the ${userType === "attorney" ? "attorney" : "client"} portal`,
+        description: `Welcome back to the ${userType === "professional" ? "professional" : "client"} portal`,
       });
       
       // Redirect based on user type
-      if (userType === "attorney") {
-        navigate("/"); // Attorney dashboard
+      if (userType === "professional") {
+        navigate("/"); // Professional dashboard
       } else {
         navigate("/client"); // Client dashboard
       }
@@ -59,13 +59,13 @@ const Login = () => {
           <CardHeader>
             <CardTitle className="text-2xl">Login</CardTitle>
             <CardDescription>
-              Access your account to manage your legal practice or view your case information
+              Access your account to manage your professional services or view your case information
             </CardDescription>
           </CardHeader>
           
-          <Tabs defaultValue="attorney" onValueChange={setUserType}>
+          <Tabs defaultValue="professional" onValueChange={setUserType}>
             <TabsList className="grid grid-cols-2 mx-6">
-              <TabsTrigger value="attorney">Attorney</TabsTrigger>
+              <TabsTrigger value="professional">Professional</TabsTrigger>
               <TabsTrigger value="client">Client</TabsTrigger>
             </TabsList>
             
@@ -120,7 +120,7 @@ const Login = () => {
                     {isLoading ? "Logging in..." : "Log in"}
                   </Button>
                   
-                  <TabsContent value="attorney" className="mt-2 p-0">
+                  <TabsContent value="professional" className="mt-2 p-0">
                     <div className="text-sm text-center space-y-2">
                       <Link to="/forgot-password" className="text-primary hover:underline">
                         Forgot password?
@@ -142,7 +142,7 @@ const Login = () => {
                       <p>
                         Need an account?{" "}
                         <span className="text-muted-foreground">
-                          Contact your attorney for access
+                          Contact your professional for access
                         </span>
                       </p>
                     </div>

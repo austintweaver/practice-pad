@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -10,7 +11,19 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Download, File, FileText } from "lucide-react";
+import { Download, File, FileText, Upload } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
 
 // Sample document data for the client
 const clientDocuments = [
@@ -41,6 +54,10 @@ const clientDocuments = [
 ];
 
 export default function ClientDocuments() {
+  const [isUploading, setIsUploading] = useState(false);
+  const [documentName, setDocumentName] = useState("");
+  const { toast } = useToast();
+
   const getFileIcon = (fileType) => {
     switch (fileType) {
       case "pdf":
@@ -54,13 +71,79 @@ export default function ClientDocuments() {
     }
   };
 
+  const handleUpload = (e) => {
+    e.preventDefault();
+    setIsUploading(true);
+    
+    // In a real application, this would upload the file to the server
+    setTimeout(() => {
+      setIsUploading(false);
+      toast({
+        title: "Document uploaded successfully",
+        description: "Your professional has been notified about the new document.",
+      });
+      setDocumentName("");
+      // In a real app, we would add the new document to the list
+    }, 1500);
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">My Documents</h2>
-        <p className="text-muted-foreground">
-          Access and download documents shared with you by your legal team.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight">My Documents</h2>
+          <p className="text-muted-foreground">
+            Access and download documents shared with you by your legal team.
+          </p>
+        </div>
+        
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-red-600 hover:bg-red-700">
+              <Upload className="mr-2 h-4 w-4" />
+              Upload Document
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Upload Document</DialogTitle>
+              <DialogDescription>
+                Upload documents securely to share with your professional.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <form onSubmit={handleUpload}>
+              <div className="grid gap-4 py-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="documentName">Document Name</Label>
+                  <Input
+                    id="documentName"
+                    value={documentName}
+                    onChange={(e) => setDocumentName(e.target.value)}
+                    placeholder="Enter document name"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="file">File</Label>
+                  <Input
+                    id="file"
+                    type="file"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <DialogFooter>
+                <Button type="button" variant="outline" onClick={() => null}>
+                  Cancel
+                </Button>
+                <Button type="submit" disabled={isUploading}>
+                  {isUploading ? "Uploading..." : "Upload"}
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <Card>

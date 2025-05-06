@@ -14,6 +14,7 @@ import {
   Calendar,
   BarChart,
   DollarSign,
+  Timer,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -32,6 +33,11 @@ const navItems = [
     name: "Calendar",
     path: "/calendar",
     icon: <Calendar className="h-5 w-5" />,
+  },
+  {
+    name: "Time Tracking",
+    path: "/timetracking",
+    icon: <Timer className="h-5 w-5" />,
   },
   {
     name: "Messages",
@@ -124,8 +130,8 @@ export function Sidebar({ className }: SidebarProps) {
               AT
             </div>
             <div className="ml-3">
-              <div className="text-sm font-medium">Attorney Name</div>
-              <div className="text-xs opacity-70">attorney@example.com</div>
+              <div className="text-sm font-medium">Professional Name</div>
+              <div className="text-xs opacity-70">professional@example.com</div>
             </div>
           </div>
         )}

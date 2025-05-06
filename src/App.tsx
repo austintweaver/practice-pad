@@ -21,6 +21,7 @@ import Tasks from "./pages/Tasks";
 import Calendar from "./pages/Calendar";
 import Reporting from "./pages/Reporting";
 import Finances from "./pages/Finances";
+import TimeTracking from "./pages/TimeTracking";
 import AttorneySignup from "./pages/attorney/AttorneySignup";
 import CreateClientAccount from "./pages/attorney/CreateClientAccount";
 import CreateTeamMember from "./pages/attorney/CreateTeamMember";
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/reporting" element={<Reporting />} />
             <Route path="/finances" element={<Finances />} />
+            <Route path="/timetracking" element={<TimeTracking />} />
           </Route>
           
           {/* Client Routes - Protected (would need auth in real app) */}
