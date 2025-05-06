@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -40,48 +41,50 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/professional/signup" element={<ProfessionalSignup />} />
-          
-          {/* Professional Routes - Protected (would need auth in real app) */}
-          <Route element={<Layout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/clients" element={<Clients />} />
-            <Route path="/clients/new" element={<CreateClientAccount />} />
-            <Route path="/team/new" element={<CreateTeamMember />} />
-            <Route path="/documents" element={<Documents />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/reporting" element={<Reporting />} />
-            <Route path="/finances" element={<Finances />} />
-            <Route path="/timetracking" element={<TimeTracking />} />
-          </Route>
-          
-          {/* Client Routes - Protected (would need auth in real app) */}
-          <Route element={<ClientLayout />}>
-            <Route path="/client" element={<ClientDashboard />} />
-            <Route path="/client/documents" element={<ClientDocuments />} />
-            <Route path="/client/messages" element={<ClientMessages />} />
-            <Route path="/client/services" element={<ClientServices />} />
-            <Route path="/client/calendar" element={<ClientCalendar />} />
-            <Route path="/client/finances" element={<ClientFinances />} />
-          </Route>
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <TooltipProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/professional/signup" element={<ProfessionalSignup />} />
+            
+            {/* Professional Routes - Protected (would need auth in real app) */}
+            <Route element={<Layout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/clients" element={<Clients />} />
+              <Route path="/clients/new" element={<CreateClientAccount />} />
+              <Route path="/team/new" element={<CreateTeamMember />} />
+              <Route path="/documents" element={<Documents />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/reporting" element={<Reporting />} />
+              <Route path="/finances" element={<Finances />} />
+              <Route path="/timetracking" element={<TimeTracking />} />
+            </Route>
+            
+            {/* Client Routes - Protected (would need auth in real app) */}
+            <Route element={<ClientLayout />}>
+              <Route path="/client" element={<ClientDashboard />} />
+              <Route path="/client/documents" element={<ClientDocuments />} />
+              <Route path="/client/messages" element={<ClientMessages />} />
+              <Route path="/client/services" element={<ClientServices />} />
+              <Route path="/client/calendar" element={<ClientCalendar />} />
+              <Route path="/client/finances" element={<ClientFinances />} />
+            </Route>
+            
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
       </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+    </QueryClientProvider>
+  </React.StrictMode>
 );
 
 export default App;
