@@ -1,19 +1,18 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, FileText, MessageSquare, Calendar, BarChart3, ArrowRight, Check } from "lucide-react";
-
 const Home = () => {
   // Scroll to pricing section function
   const scrollToPricing = () => {
     const pricingSection = document.getElementById('pricing-section');
     if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' });
+      pricingSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-  
   return <div className="min-h-screen bg-background">
       {/* Navigation Buttons */}
       <div className="absolute top-4 right-4 z-20 flex gap-3">
@@ -44,9 +43,7 @@ const Home = () => {
               Client Clubhouse
               <span className="block text-2xl md:text-3xl font-bold mt-2 text-gray-700">For Modern Professionals</span>
             </h1>
-            <p className="text-lg mb-8 text-gray-700 max-w-lg mx-auto">
-              A secure, elegant platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.
-            </p>
+            <p className="text-lg mb-8 text-gray-700 max-w-lg mx-auto">An easy-to-use, secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg" className="min-w-[160px] bg-red-600 hover:bg-red-700">
                 <Link to="/professional/signup">Create Account</Link>
@@ -61,10 +58,7 @@ const Home = () => {
         {/* Curved Divider */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full h-[60px]">
-            <path 
-              fill="#FFFFFF" 
-              fillOpacity="1" 
-              d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,48C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
+            <path fill="#FFFFFF" fillOpacity="1" d="M0,32L48,48C96,64,192,96,288,96C384,96,480,64,576,48C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z">
             </path>
           </svg>
         </div>
@@ -94,55 +88,11 @@ const Home = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <PricingCard 
-              title="Basic" 
-              price="$25" 
-              description="Perfect for solo practitioners" 
-              features={[
-                "Up to 25 client accounts", 
-                "Document management", 
-                "Secure messaging", 
-                "Basic calendar", 
-                "Email support",
-                "+$10/month per additional professional"
-              ]} 
-              buttonText="Get Started" 
-              buttonLink="/professional/signup?plan=basic" 
-            />
+            <PricingCard title="Basic" price="$25" description="Perfect for solo practitioners" features={["Up to 25 client accounts", "Document management", "Secure messaging", "Basic calendar", "Email support", "+$10/month per additional professional"]} buttonText="Get Started" buttonLink="/professional/signup?plan=basic" />
             
-            <PricingCard 
-              title="Professional" 
-              price="$50" 
-              description="Ideal for small firms" 
-              features={[
-                "Up to 100 client accounts", 
-                "All Basic features", 
-                "Advanced reporting", 
-                "Custom branding", 
-                "Custom URL (yourname.clientclubhouse.com)", 
-                "Priority support",
-                "+$10/month per additional professional"
-              ]} 
-              buttonText="Get Started" 
-              buttonLink="/professional/signup?plan=professional" 
-              highlighted={true} 
-            />
+            <PricingCard title="Professional" price="$50" description="Ideal for small firms" features={["Up to 100 client accounts", "All Basic features", "Advanced reporting", "Custom branding", "Custom URL (yourname.clientclubhouse.com)", "Priority support", "+$10/month per additional professional"]} buttonText="Get Started" buttonLink="/professional/signup?plan=professional" highlighted={true} />
             
-            <PricingCard 
-              title="Enterprise" 
-              price="$150" 
-              description="For established practices" 
-              features={[
-                "Unlimited client accounts", 
-                "All Professional features", 
-                "Custom branding", 
-                "Custom URL (yourname.clientclubhouse.com)", 
-                "Phone support", 
-                "Team management"
-              ]} 
-              buttonText="Get Started" 
-              buttonLink="/professional/signup?plan=enterprise" 
-            />
+            <PricingCard title="Enterprise" price="$150" description="For established practices" features={["Unlimited client accounts", "All Professional features", "Custom branding", "Custom URL (yourname.clientclubhouse.com)", "Phone support", "Team management"]} buttonText="Get Started" buttonLink="/professional/signup?plan=enterprise" />
           </div>
         </div>
       </section>
@@ -216,8 +166,13 @@ const PricingCard = ({
       </ul>
     </CardContent>
     <CardFooter>
-      <Button asChild className="w-full" variant={highlighted ? "default" : "outline"} 
-        style={highlighted ? {backgroundColor: "#ea384c", borderColor: "#ea384c"} : {borderColor: "#ea384c", color: "#ea384c"}}>
+      <Button asChild className="w-full" variant={highlighted ? "default" : "outline"} style={highlighted ? {
+      backgroundColor: "#ea384c",
+      borderColor: "#ea384c"
+    } : {
+      borderColor: "#ea384c",
+      color: "#ea384c"
+    }}>
         <Link to={buttonLink} className="flex items-center justify-center">
           {buttonText}
           <ArrowRight className="ml-2 h-4 w-4" />
@@ -225,5 +180,4 @@ const PricingCard = ({
       </Button>
     </CardFooter>
   </Card>;
-
 export default Home;
