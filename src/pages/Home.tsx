@@ -11,13 +11,13 @@ const Home = () => {
       <header className="bg-gradient-to-b from-red-50 to-white border-b">
         <div className="container mx-auto px-4 py-16 flex flex-col items-center text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Professional Services
-            <span className="block text-muted-foreground mt-2">Simplified</span>
+            Client Clubhouse
+            <span className="block text-muted-foreground mt-2">Professional Services Simplified</span>
           </h1>
           <p className="text-lg mb-8 max-w-2xl text-black">A secure platform for professionals to manage clients, documents, and services with dedicated client portals for seamless collaboration.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button asChild size="lg" className="min-w-[160px] bg-red-600 hover:bg-red-700">
-              <Link to="/attorney/signup">Create Account</Link>
+              <Link to="/professional/signup">Create Account</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="min-w-[160px] border-red-600 text-red-600 hover:bg-red-50">
               <Link to="/login">Login</Link>
@@ -34,7 +34,7 @@ const Home = () => {
             <FeatureCard icon={<Shield className="h-10 w-10 text-red-600" />} title="Secure Client Portal" description="Provide clients with secure access to case information, documents, and communication." />
             <FeatureCard icon={<Users className="h-10 w-10 text-red-600" />} title="Client Management" description="Easily manage client relationships and create client accounts with appropriate access controls." />
             <FeatureCard icon={<FileText className="h-10 w-10 text-red-600" />} title="Document Management" description="Securely store, share, and collaborate on legal documents with clients." />
-            <FeatureCard icon={<MessageSquare className="h-10 w-10 text-red-600" />} title="Secure Messaging" description="Communicate with clients in a secure environment, maintaining attorney-client privilege." />
+            <FeatureCard icon={<MessageSquare className="h-10 w-10 text-red-600" />} title="Secure Messaging" description="Communicate with clients in a secure environment, maintaining professional-client privilege." />
             <FeatureCard icon={<Calendar className="h-10 w-10 text-red-600" />} title="Calendar & Scheduling" description="Manage appointments, deadlines, and important dates in one central location." />
             <FeatureCard icon={<BarChart3 className="h-10 w-10 text-red-600" />} title="Reporting & Analytics" description="Gain insights into your practice with comprehensive reporting tools." />
           </div>
@@ -59,10 +59,11 @@ const Home = () => {
                 "Document management", 
                 "Secure messaging", 
                 "Basic calendar", 
-                "Email support"
+                "Email support",
+                "+$10/month per additional professional"
               ]} 
               buttonText="Get Started" 
-              buttonLink="/attorney/signup?plan=basic" 
+              buttonLink="/professional/signup?plan=basic" 
             />
             
             <PricingCard 
@@ -74,11 +75,12 @@ const Home = () => {
                 "All Basic features", 
                 "Advanced reporting", 
                 "Custom branding", 
-                "Custom URL (yourfirm.practicepad.com)", 
-                "Priority support"
+                "Custom URL (yourname.clientclubhouse.com)", 
+                "Priority support",
+                "+$10/month per additional professional"
               ]} 
               buttonText="Get Started" 
-              buttonLink="/attorney/signup?plan=professional" 
+              buttonLink="/professional/signup?plan=professional" 
               highlighted={true} 
             />
             
@@ -90,12 +92,12 @@ const Home = () => {
                 "Unlimited client accounts", 
                 "All Professional features", 
                 "Custom branding", 
-                "Custom URL (yourfirm.practicepad.com)", 
+                "Custom URL (yourname.clientclubhouse.com)", 
                 "Phone support", 
                 "Team management"
               ]} 
               buttonText="Get Started" 
-              buttonLink="/attorney/signup?plan=enterprise" 
+              buttonLink="/professional/signup?plan=enterprise" 
             />
           </div>
         </div>
@@ -107,7 +109,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Practice?</h2>
           <p className="mb-8 max-w-2xl mx-auto">Join other professionals and firms who have streamlined their practice management.</p>
           <Button asChild size="lg" variant="secondary" className="min-w-[200px]">
-            <Link to="/attorney/signup">Create Account</Link>
+            <Link to="/professional/signup">Create Account</Link>
           </Button>
         </div>
       </section>

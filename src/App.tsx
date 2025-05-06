@@ -11,7 +11,7 @@ import { ClientLayout } from "./components/layout/ClientLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
-// Attorney Pages
+// Professional Pages
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import Documents from "./pages/Documents";
@@ -22,7 +22,7 @@ import Calendar from "./pages/Calendar";
 import Reporting from "./pages/Reporting";
 import Finances from "./pages/Finances";
 import TimeTracking from "./pages/TimeTracking";
-import AttorneySignup from "./pages/attorney/AttorneySignup";
+import ProfessionalSignup from "./pages/professional/ProfessionalSignup";
 import CreateClientAccount from "./pages/attorney/CreateClientAccount";
 import CreateTeamMember from "./pages/attorney/CreateTeamMember";
 
@@ -49,9 +49,9 @@ const App = () => (
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/attorney/signup" element={<AttorneySignup />} />
+          <Route path="/professional/signup" element={<ProfessionalSignup />} />
           
-          {/* Attorney Routes - Protected (would need auth in real app) */}
+          {/* Professional Routes - Protected (would need auth in real app) */}
           <Route element={<Layout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/tasks" element={<Tasks />} />
